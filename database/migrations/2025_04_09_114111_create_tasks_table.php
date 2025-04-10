@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('name_task');
+            $table->string('name');
             $table->text('content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('file')->nullable();

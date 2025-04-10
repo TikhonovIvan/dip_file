@@ -47,7 +47,10 @@
                         <label for="role" class="form-label">Роль</label>
                         <select name="role_id" id="role" class="form-select">
                             @foreach($roles as $role)
-                                <option value="{{ $role->id }}">{{$role->name}}</option>
+                                @if($role->name !=='Admin')
+                                    <option value="{{ $role->id }}">{{$role->name}}</option>
+                                @endif
+
                             @endforeach
 
                         </select>

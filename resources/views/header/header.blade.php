@@ -28,7 +28,7 @@
                            href="{{ route('departments.index') }}">Отделы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/tasks.html">Список задач</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('tasks.index') }}">Список задач</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="admin/all_files.html">Все документы</a>

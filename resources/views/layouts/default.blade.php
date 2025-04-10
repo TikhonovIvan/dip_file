@@ -2,6 +2,7 @@
 <html lang="ru">
 @include('header.head')
 
+@stack('scripts')
 <body>
 @include('header.header')
 

@@ -44,7 +44,7 @@
                                         @endif
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1">{{ $user->name }}{{ $user->surname }}</p>
+                                            <p class="fw-bold mb-1">{{ $user->name }} {{ $user->surname }}</p>
                                             <p class="text-muted mb-0">{{ $user->email }}</p>
                                         </div>
                                     </div>

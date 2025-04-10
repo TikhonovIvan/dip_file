@@ -12,7 +12,7 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_task', 'content', 'user_id', 'file', 'department_id', 'status'
+        'name', 'content', 'user_id', 'file','department_id', 'status'
     ];
 
     public function user() : BelongsTo
@@ -23,5 +23,9 @@ class Task extends Model
     public function department() : BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+    public function files()
+    {
+        return $this->hasMany(TaskFile::class);
     }
 }

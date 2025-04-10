@@ -38,7 +38,9 @@
                         <select name="role_id" id="role" class="form-select">
                             <option selected>Выберите роль </option>
                             @foreach($roles as $role)
-                                <option value="{{ $role->id }}">{{$role->name}}</option>
+                                @if($role->name !== 'Admin')
+                                    <option value="{{ $role->id }}">{{$role->name}}</option>
+                                @endif
                             @endforeach
 
                         </select>

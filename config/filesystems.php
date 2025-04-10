@@ -65,6 +65,11 @@ return [
 
         ],
 
+        'public_files' => [
+            'driver' => 'local',
+            'root' => public_path('assets/files'),
+        ],
+
     ],
 
     /*
