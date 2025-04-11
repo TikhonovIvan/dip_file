@@ -31,13 +31,14 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('tasks.index') }}">Список задач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/all_files.html">Все документы</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('tasks.all.files')}}">Все документы</a>
                     </li>
                 </ul>
 
                 <div class="btn-group mr-auto">
                     <button class="btn btn-light btn-md " type="button">
-                        Добро пожаловать: {{ auth()->user()->name }}
+                        Добро пожаловать: {{ auth()->user()->name }} {{auth()->user()->surname}}
+
                     </button>
                     <button type="button" class="btn btn-md btn-primary  dropdown-toggle dropdown-toggle-split "
                             data-bs-toggle="dropdown" aria-expanded="false">

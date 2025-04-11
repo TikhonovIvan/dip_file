@@ -47,10 +47,7 @@
                         <label for="role" class="form-label">Роль</label>
                         <select name="role_id" id="role" class="form-select">
                             @foreach($roles as $role)
-                                @if($role->name !=='Admin')
                                     <option value="{{ $role->id }}">{{$role->name}}</option>
-                                @endif
-
                             @endforeach
 
                         </select>
@@ -59,7 +56,7 @@
 
                     @if($user->avatar)
                         <div class="col-12 d-block d-sm-none ">
-                            <img src="{{ asset("assets/images/{$user->avatar}") }}" alt="" style="width: 300px">
+                            <img src="{{ asset("assets/images/{$user->avatar}") }}" alt="" style="max-width: 300px; max-height: 300px">
                         </div>
                     @else
                         <div class="col-12 d-block d-sm-none ">

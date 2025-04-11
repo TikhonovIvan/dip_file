@@ -1,0 +1,29 @@
+Table users
+id
+name
+surname
+avatar
+department_id
+role_id
+email
+password
+
+
+Table roles
+id
+name
+
+Table departments
+id
+name
+
+Table tasks
+id
+name_task
+content
+user_id
+file
+department_id
+status (0)
+
+

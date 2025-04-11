@@ -58,13 +58,18 @@
                             <td>{{ $result_file->original_name }}</td>
                             <td>{{ $result_file->created_at }}</td>
                             <td class="text-end">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">
+                                <div class="btn-group gap-1" role="group">
+                                    <a href="{{ route('tasks.download.file', $result_file->id) }}" class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-download"></i> Скачать
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i> Удалить
-                                    </button>
+                                    </a>
+                                    <form action="{{ route('tasks.destroy.file', $result_file->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash"></i> Удалить
+                                        </button>
+                                    </form>
+
                                 </div>
                             </td>
                         </tr>

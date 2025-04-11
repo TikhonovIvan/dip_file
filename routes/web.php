@@ -56,6 +56,25 @@ Route::middleware('auth')->group(function () {
 
             Route::put('/{id}', [TaskController::class, 'update'])->name('tasks.update');
             Route::put('/{id}/update-file', [TaskController::class, 'fileUpdate'])->name('tasks.update.file');
+
+            Route::delete('/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+            Route::delete('/{id}/destroy-file', [TaskController::class, 'destroyFile'])->name('tasks.destroy.file');
+
+            Route::get('/download-file/{id}', [TaskController::class, 'fileDownload'])->name('tasks.download.file');
+
+            //Все документы
+            Route::get('/all-files', [TaskController::class, 'allFiles'])->name('tasks.all.files');
+            Route::get('/all-files/download-file/{id}', [TaskController::class, 'allFileDownload'])->name('tasks.all.files.download');
+            Route::get('/all-files', [TaskController::class, 'allFiles'])->name('tasks.all.files');
+
+            Route::get('/autocomplete-files', [TaskController::class, 'autocompleteFiles'])->name('files.autocomplete');
+
+
+
+
+
+
+
         });
 
 
