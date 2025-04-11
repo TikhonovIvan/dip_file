@@ -42,15 +42,40 @@
                         </select>
                     </div>
 
+                    @php
+                        $isAdmin = auth()->user()?->role?->name === 'Admin';
+                        $editingAdmin = isset($user) && $user->role?->name === 'Admin';
+                    @endphp
 
                     <div class="col-md-6">
                         <label for="role" class="form-label">Роль</label>
-                        <select name="role_id" id="role" class="form-select">
-                            @foreach($roles as $role)
-                                    <option value="{{ $role->id }}">{{$role->name}}</option>
-                            @endforeach
 
-                        </select>
+                        @if($isAdmin)
+                            {{-- Админ редактирует другого админа --}}
+                            <select name="role_id" id="role" class="form-select">
+                                @foreach($roles as $role)
+                                    {{-- Не показываем "Admin", если редактируем не админа --}}
+                                    @if($editingAdmin || $role->name !== 'Admin')
+                                        <option value="{{ $role->id }}"
+                                            {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        @else
+                            {{-- Не-админы не могут выбирать роль Admin вообще --}}
+                            <select name="role_id" id="role" class="form-select">
+                                @foreach($roles as $role)
+                                    @if($role->name !== 'Admin')
+                                        <option value="{{ $role->id }}"
+                                            {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
 
 

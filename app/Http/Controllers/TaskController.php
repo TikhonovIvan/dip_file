@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\TaskFile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
@@ -16,7 +17,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with(['user', 'department'])->get();
+        $user = auth()->user();
+
+        // Если роль исполнителя (role_id = 3), показываем только его задачи
+        if ($user->role_id == 3) {
+            $tasks = Task::where('user_id', $user->id)
+                ->with(['user', 'department'])
+                ->latest()
+                ->get();
+        } else {
+            // Иначе показываем все задачи
+            $tasks = Task::with(['user', 'department'])
+                ->latest()
+                ->get();
+        }
         return view('admin.tasks.index', [
             'tasks' => $tasks,
         ]);
@@ -27,6 +41,10 @@ class TaskController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->role_id == 3){
+            abort(403);
+        }
+
         $users = User::with('department', 'role')->get();
 
         return view('admin.tasks.create',[
@@ -40,6 +58,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->role_id == 3){
+            abort(403);
+        }
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
@@ -97,6 +118,9 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
+        if(auth()->user()->role_id == 3){
+            abort(403);
+        }
         $users = User::with('department')->get(); // З
 
         $task = Task::with('files')->findOrFail($id);
@@ -111,6 +135,9 @@ class TaskController extends Controller
 
     public function update(Request $request, string $id)
     {
+        if(auth()->user()->role_id == 3){
+            abort(403);
+        }
         // Находим задачу по ID
         $task = Task::with('files')->findOrFail($id);
 
@@ -154,6 +181,9 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
+        if(auth()->user()->role_id == 3){
+            abort(403);
+        }
         $task = Task::query()->findOrFail($id);
         $task->delete();
         return redirect()->route('tasks.index')->with('success', 'Задача удалена');

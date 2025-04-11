@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -16,6 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
+
+
         $users = User::with(['department', 'role'])->get();
 
         return view('admin.users.index', [
@@ -28,6 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('create-edit-user')){
+            abort(403);
+        }
         $roles = Role::all();
         $departments = Department::all();
 
@@ -46,6 +52,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('create-edit-user')){
+            abort(403);
+        }
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'surname' => ['required', 'string', 'max:25'],
@@ -53,7 +62,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8' ],
             'role_id' => ['required'],
             'department_id' => ['required'],
-            'avatar' => ['image', 'extensions:jpeg,jpg,png', 'max:15000'],
+            'avatar' => ['nullable','image', 'extensions:jpeg,jpg,png', 'max:15000'],
         ]);
 
         // Обработка файла аватара (если есть)
@@ -77,6 +86,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+
         $roles = Role::all();
         $departments = Department::all();
 
@@ -93,6 +103,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $user = User::query()->findOrFail($id);
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
@@ -101,8 +112,16 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8' ],
             'role_id' => ['required'],
             'department_id' => ['required'],
-            'avatar' => ['image', 'extensions:jpeg,jpg,png', 'max:15000'],
+            'avatar' => ['nullable','image', 'extensions:jpeg,jpg,png', 'max:15000'],
         ]);
+
+//        // Определение роли
+//        if (auth()->user()?->role?->name === 'Admin') {
+//            $adminRole = Role::where('Admin')->first();
+//            $roleId = $adminRole?->id;
+//        } else {
+//            $roleId = $request->input('role_id');
+//        }
         // Если загружен новый аватар
         if ($request->hasFile('avatar')) {
             // Удалить старый, если он есть
@@ -126,6 +145,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        if(Gate::denies('create-edit-user')){
+            abort(403);
+        }
         $user = User::query()->findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Сотрудник был удален');
@@ -143,14 +165,22 @@ class UserController extends Controller
 
         $validated = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required' ],
+            'password' => ['required'],
         ]);
 
-        if(Auth::attempt($validated)){
+        if (Auth::attempt($validated)) {
+            $user = Auth::user();
+
+            // Перенаправление по ролям
+            if ($user->role_id == 3) {
+                return redirect()->route('tasks.index')->with('success', 'Добро пожаловать');
+            }
+
             return redirect()->route('users.index')->with('success', 'Добро пожаловать');
         }
+
         return back()->withErrors([
-            'email' => 'Ошибка логин или пароль'
+            'email' => 'Ошибка логин или пароль',
         ]);
     }
 

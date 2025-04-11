@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-    Route::prefix('admin')->group(function () {
+    Route::prefix('user')->group(function () {
 
         // Users
         Route::prefix('users')->group(function () {
