@@ -89,7 +89,7 @@ class UserController extends Controller
 
         $authUser = auth()->user();
 
-        // Если пользователь с role_id = 3 и пытается отредактировать не себя
+        // Если пользователь с role_id = 3 и пытается отредактировать не себя, то сделать запрет
         if ($authUser->role_id == 3 && $authUser->id != $id) {
             abort(403);
         }
