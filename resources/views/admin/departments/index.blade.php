@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12 col-md-6 ">
                 <h4 class="text-center pb-2 border-bottom">Список отделов </h4>
-                <table class="table align-middle mb-0 bg-white">
+                <table class="table align-middle mb-0 bg-white table-striped ">
                     <thead class="bg-light">
                     <tr>
                         <th class="text-start">Название</th>

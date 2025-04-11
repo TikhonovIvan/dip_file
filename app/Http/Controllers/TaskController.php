@@ -67,10 +67,7 @@ class TaskController extends Controller
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'department_id' => ['required', 'integer', 'exists:departments,id'],
             'files' => ['required', 'array'], // Обновляем для массива файлов
-            'files.*' => [
-                'file',
-                'mimes:doc,docx,pdf,xls,xlsx,txt',
-            ],
+            'files.*' => ['file', 'mimes:doc,docx,pdf,pptx,xls,xlsx,txt',],
         ]);
 
         // Создание задачи
@@ -148,7 +145,7 @@ class TaskController extends Controller
             'user_id' => ['required', 'exists:users,id'],
             'department_id' => ['required', 'exists:departments,id'],
             'files' => ['nullable', 'array'], // Массив файлов (может быть пустым)
-            'files.*' => ['file', 'mimes:doc,docx,pdf,xls,xlsx,txt'],
+            'files.*' => ['file', 'mimes:doc,docx,pdf,pptx,xls,xlsx,txt'],
         ]);
 
         // Обновление полей задачи
@@ -200,7 +197,7 @@ class TaskController extends Controller
             'files' => ['nullable', 'array'], // Массив файлов (может быть пустым)
             'files.*' => [
                 'file',
-                'mimes:doc,docx,pdf,xls,xlsx,txt', // Допустимые форматы файлов
+                'mimes:doc,docx,pdf,pptx,xls,xlsx,txt', // Допустимые форматы файлов
             ],
         ]);
 

@@ -27,7 +27,7 @@
                                 </label>
                             </div>
                             <div class="col-12 py-3">
-                                <label for="formFile" class="form-label">Добавить добавить файл</label>
+                                <label for="formFile" class="form-label"><strong>Внимание!</strong> <br> Файл должен иметь следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt'</strong>></label>
                                 <input name="files[]" class="form-control" type="file" id="files" multiple>
                             </div>
                             <div class="mt-3">

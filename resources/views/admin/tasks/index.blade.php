@@ -13,14 +13,14 @@
             <div class="col-12">
                 <h4 class="text-center pb-2 border-bottom">Список Задач </h4>
                 <div class="table-responsive">
-                    <table class="table align-middle mb-0 bg-white">
+                    <table class="table align-middle mb-0 bg-white table-striped ">
                         <thead class="bg-light">
                         <tr>
                             <th>Название задачи</th>
                             <th>Исполнитель</th>
                             <th>Отдел</th>
                             <th>Дата создания</th>
-                            <th>Статус</th>
+                            <th class="text-center">Статус</th>
                             <th class="text-end">Действие</th>
                         </tr>
                         </thead>
@@ -28,7 +28,7 @@
                         @forelse($tasks as $task)
                                 <tr>
                                     <td>
-                                        <p class=" fw-normal mb-1">{{ $task->name }}</p>
+                                        <p class=" fw-normal mb-1 fw-bold" style="font-size: 18px;">{{ $task->name }}</p>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">

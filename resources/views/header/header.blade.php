@@ -2,7 +2,7 @@
     <nav class="container navbar navbar-expand-lg  border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">Logo</a>
+            <img src="{{ asset('logo.png') }}" alt="" style="width: 45px" class="me-5">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -41,9 +41,16 @@
                         </li>
                 </ul>
 
+
+                <div class="d-flex flex-column text-light me-5">
+                    <div >Отдел: {{auth()->user()->department->name}}</div>
+                    <div >Роль: {{auth()->user()->role->name}}</div>
+                </div>
                 <div class="btn-group mr-auto">
+
+
                     <button class="btn btn-light btn-md " type="button">
-                        {{auth()->user()->role->name}}: {{ auth()->user()->name }} {{auth()->user()->surname}}
+                       {{ auth()->user()->name }} {{auth()->user()->surname}}
 
                     </button>
                     <button type="button" class="btn btn-md btn-primary  dropdown-toggle dropdown-toggle-split "

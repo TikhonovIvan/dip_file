@@ -50,9 +50,8 @@
                         @empty
                             <tr>
                                 <td></td>
-                                <td></td>
+                                <td class="text-center">Файлов нет</td>
                                 <td>
-                                    Файлов нет
                                 </td>
                             </tr>
                         @endforelse

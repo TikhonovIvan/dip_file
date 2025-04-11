@@ -46,7 +46,7 @@
 
 
                     <div class="col-12">
-                        <label for="formFile" class="form-label">Добавить документ</label>
+                        <label for="formFile" class="form-label"><strong>Внимание!</strong> <br> Файл должен иметь следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt'</strong>></label>
                         <input name="files[]" class="form-control" type="file" id="files" multiple>
                     </div>
 
