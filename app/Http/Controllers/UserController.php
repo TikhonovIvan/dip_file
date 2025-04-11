@@ -87,6 +87,13 @@ class UserController extends Controller
     public function edit(string $id)
     {
 
+        $authUser = auth()->user();
+
+        // Если пользователь с role_id = 3 и пытается отредактировать не себя
+        if ($authUser->role_id == 3 && $authUser->id != $id) {
+            abort(403);
+        }
+
         $roles = Role::all();
         $departments = Department::all();
 
