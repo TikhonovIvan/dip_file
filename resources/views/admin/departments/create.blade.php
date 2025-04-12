@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Создать отдел')
 
@@ -6,8 +6,8 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-6">
-                <h3>Создать новую Отдел</h3>
-                <form class="row g-3" method="post" action="{{ route('departments.store') }}" >
+                <h3>Создать новый отдел</h3>
+                <form class="row g-3" method="post" action="{{ route('departments.store') }}">
                     @csrf
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Название</label>

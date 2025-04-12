@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Все документы')
 
@@ -8,13 +8,13 @@
             <div class="col-12 col-md-6 ">
                 <form method="GET" action="{{ route('tasks.all.files') }}">
                     <div class="input-group">
-                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Поиск по названию файла или дате...">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                               placeholder="Поиск по названию файла или дате...">
                         <button class="btn btn-primary" type="submit">Найти</button>
                     </div>
                 </form>
             </div>
         </div>
-
 
 
         <div class="row">
@@ -37,13 +37,14 @@
                                 <td class="text-center">{{$allFile->created_at}}</td>
                                 <td class="text-end">
                                     <div class="btn-group" role="group">
-                                        <a href="{{ route('tasks.all.files.download', $allFile->id) }}" type="button" class="btn btn-sm btn-outline-primary">
+                                        <a href="{{ route('tasks.all.files.download', $allFile->id) }}" type="button"
+                                           class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-download"></i> Скачать
                                         </a>
 
-{{--                                        <button type="button" class="btn btn-sm btn-outline-danger">--}}
-{{--                                            <i class="bi bi-trash"></i> Удалить--}}
-{{--                                        </button>--}}
+                                        {{--                                        <button type="button" class="btn btn-sm btn-outline-danger">--}}
+                                        {{--                                            <i class="bi bi-trash"></i> Удалить--}}
+                                        {{--                                        </button>--}}
                                     </div>
                                 </td>
                             </tr>
@@ -55,7 +56,6 @@
                                 </td>
                             </tr>
                         @endforelse
-
 
 
                         </tbody>

@@ -50,7 +50,7 @@
 
 
                     <button class="btn btn-light btn-md " type="button">
-                       {{ auth()->user()->name }} {{auth()->user()->surname}}
+                       Добро пожаловать: {{ auth()->user()->name }} {{auth()->user()->surname}}
 
                     </button>
                     <button type="button" class="btn btn-md btn-primary  dropdown-toggle dropdown-toggle-split "

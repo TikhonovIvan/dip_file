@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Редактирование отдела')
 
@@ -6,13 +6,14 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-6">
-                <h3>редактирование отдела</h3>
-                <form class="row g-3" method="post" action="{{ route('departments.update', $department->id) }}" >
+                <h3>Редактирование отдела</h3>
+                <form class="row g-3" method="post" action="{{ route('departments.update', $department->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Название</label>
-                        <input name="name" type="text" class="form-control" id="inputEmail4" value="{{$department->name}}">
+                        <input name="name" type="text" class="form-control" id="inputEmail4"
+                               value="{{$department->name}}">
                     </div>
 
                     <div class="col-12">

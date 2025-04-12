@@ -65,8 +65,7 @@ class TaskController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'department_id' => ['required', 'integer', 'exists:departments,id'],
-            'files' => ['required', 'array'], // Обновляем для массива файлов
+            'files' => ['nullable', 'array'], // Обновляем для массива файлов
             'files.*' => ['file', 'mimes:doc,docx,pdf,pptx,xls,xlsx,txt',],
         ]);
 
@@ -75,19 +74,20 @@ class TaskController extends Controller
             'name' => $validated['name'],
             'content' => $validated['content'],
             'user_id' => $validated['user_id'],
-            'department_id' => $validated['department_id'],
             'status' => 0,
         ]);
 
         // Сохранение всех файлов в таблицу task_files
-        foreach ($request->file('files') as $file) {
-            $filePath = $file->store('file', 'public_files'); // Сохраняем файл в папке 'file'
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filePath = $file->store('file', 'public_files'); // Сохраняем файл в папке 'file'
 
-            // Создаем запись в таблице task_files
-            $task->files()->create([
-                'file' => $filePath, // Сохраняем путь к файлу
-                'original_name' => $file->getClientOriginalName(), // Сохраняем оригинальное имя файла
-            ]);
+                // Создаем запись в таблице task_files
+                $task->files()->create([
+                    'file' => $filePath, // Сохраняем путь к файлу
+                    'original_name' => $file->getClientOriginalName(), // Сохраняем оригинальное имя файла
+                ]);
+            }
         }
 
         return redirect()->route('tasks.index')->with('success', 'Задача успешно создана');
@@ -143,7 +143,6 @@ class TaskController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'user_id' => ['required', 'exists:users,id'],
-            'department_id' => ['required', 'exists:departments,id'],
             'files' => ['nullable', 'array'], // Массив файлов (может быть пустым)
             'files.*' => ['file', 'mimes:doc,docx,pdf,pptx,xls,xlsx,txt'],
         ]);
@@ -153,7 +152,6 @@ class TaskController extends Controller
             'name' => $validated['name'],
             'content' => $validated['content'],
             'user_id' => $validated['user_id'],
-            'department_id' => $validated['department_id'],
             'status' => 0, // Изначально не выполнена (или какое значение нужно)
         ]);
 

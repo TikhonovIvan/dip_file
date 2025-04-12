@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,3 +12,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <title>@yield('title')</title>
 </head>
+
+{{--@stack('scripts')--}}
+<body>
+@include('layouts.header')
+
+
+<main>
+    @yield('content')
+
+</main>
+
+
+@yield('scripts')
+
+</body>
+</html>

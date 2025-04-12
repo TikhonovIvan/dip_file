@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Редактирование задачи')
 
@@ -7,17 +7,20 @@
         <div class="row">
             <div class="col-6">
                 <h3>Редактировать задачу</h3>
-                <form class="row g-3" method="post" action="{{ route('tasks.update', $task->id) }}" enctype="multipart/form-data">
+                <form class="row g-3" method="post" action="{{ route('tasks.update', $task->id) }}"
+                      enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="col-md-12">
                         <label for="name" class="form-label">Название задачи</label>
-                        <input name="name" type="text" class="form-control" id="name" value="{{ old('name', $task->name) }}" required>
+                        <input name="name" type="text" class="form-control" id="name"
+                               value="{{ old('name', $task->name) }}" required>
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <textarea name="content" class="form-control" placeholder="Описание задачи" id="content" style="height: 100px" required>{{ old('content', $task->content) }}</textarea>
+                            <textarea name="content" class="form-control" placeholder="Описание задачи" id="content"
+                                      style="height: 100px" required>{{ old('content', $task->content) }}</textarea>
                             <label for="content">Описание задачи</label>
                         </div>
                     </div>
@@ -38,13 +41,16 @@
 
                     <div class="col-md-12">
                         <label for="disabledTextInput" class="form-label">Сотрудник отдела</label>
-                        <input type="text" id="disabledTextInput" class="form-control" value="{{ $task->user->department->name ?? '' }}" readonly>
+                        <input type="text" id="disabledTextInput" class="form-control"
+                               value="{{ $task->user->department->name ?? '' }}" readonly>
                     </div>
 
-                    <input type="hidden" name="department_id" id="hiddenDepartmentId" value="{{ $task->department_id }}">
+                    <input type="hidden" name="department_id" id="hiddenDepartmentId"
+                           value="{{ $task->department_id }}">
 
                     <div class="col-12">
-                        <label for="formFile" class="form-label"><strong>Внимание!</strong> <br> Файл должен иметь следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt'</strong>></label>
+                        <label for="formFile" class="form-label"><strong>Внимание!</strong> <br> Файл должен иметь
+                            следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt'</strong>></label>
                         <input name="files[]" class="form-control" type="file" id="files" multiple>
                     </div>
 
@@ -56,7 +62,7 @@
         </div>
     </div>
 
-    @push('scripts')
+
         <script>
             const users = @json($users);
 
@@ -79,8 +85,6 @@
                 });
             });
         </script>
-    @endpush
-
 
 
 @endsection

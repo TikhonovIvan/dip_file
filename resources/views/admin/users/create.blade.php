@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Создание пользователя')
 
@@ -21,7 +21,7 @@
                     <div class="col-12">
                         <label for="formFile" class="form-label">
                             Вынимание!<br>
-                            Фото должно иметь расширение : <strong>.jpeg, .jpg, .png</strong>  и весить не больше 15мб.
+                            Фото должно иметь расширение : <strong>.jpeg, .jpg, .png</strong> и весить не больше 15мб.
                         </label>
                         <input name="avatar" class="form-control" type="file" id="formFile">
                     </div>
@@ -30,7 +30,7 @@
                         <select name="department_id" id="department" class="form-select">
                             <option selected>Выберите отдел</option>
                             @foreach($departments as $department)
-                                <option  value="{{ $department->id }}">{{$department->name}}</option>
+                                <option value="{{ $department->id }}">{{$department->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-6">
                         <label for="role" class="form-label">Роль</label>
                         <select name="role_id" id="role" class="form-select">
-                            <option selected>Выберите роль </option>
+                            <option selected>Выберите роль</option>
                             @foreach($roles as $role)
                                 @if($role->name !== 'Admin')
                                     <option value="{{ $role->id }}">{{$role->name}}</option>

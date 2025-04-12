@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Личный кабинет')
 
@@ -37,7 +37,10 @@
                         <select name="department_id" id="department" class="form-select">
 
                             @foreach($departments as $department)
-                                <option value="{{ $department->id }}">{{$department->name}}</option>
+                                <option value="{{ $department->id }}"  {{$department->id == $user->department_id ? 'selected' : '' }}>
+                                    {{$department->name}}
+                                </option>
+
                             @endforeach
                         </select>
                     </div>
@@ -57,7 +60,7 @@
                                     {{-- Не показываем "Admin", если редактируем не админа --}}
                                     @if($editingAdmin || $role->name !== 'Admin')
                                         <option value="{{ $role->id }}"
-                                            {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
+                                                {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
                                             {{ $role->name }}
                                         </option>
                                     @endif
@@ -69,7 +72,7 @@
                                 @foreach($roles as $role)
                                     @if($role->name !== 'Admin')
                                         <option value="{{ $role->id }}"
-                                            {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
+                                                {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
                                             {{ $role->name }}
                                         </option>
                                     @endif
@@ -81,7 +84,8 @@
 
                     @if($user->avatar)
                         <div class="col-12 d-block d-sm-none ">
-                            <img src="{{ asset("assets/images/{$user->avatar}") }}" alt="" style="max-width: 300px; max-height: 300px">
+                            <img src="{{ asset("assets/images/{$user->avatar}") }}" alt=""
+                                 style="max-width: 300px; max-height: 300px">
                         </div>
                     @else
                         <div class="col-12 d-block d-sm-none ">

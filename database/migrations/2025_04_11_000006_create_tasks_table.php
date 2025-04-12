@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('file')->nullable();
-            $table->foreignId('department_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('status')->default(0); // 0 - новая, 1 - в процессе, 2 - выполнена
             $table->timestamps();
         });

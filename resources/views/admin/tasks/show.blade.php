@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('title', 'Задача')
 
@@ -23,14 +23,14 @@
                         <div class="form-check">
                             <input name="status" class="form-check-input" type="checkbox" value="{{$task->status}}"
                                    id="checkDefault"
-                                {{ $task->status ? 'checked' : '' }}>
+                                    {{ $task->status ? 'checked' : '' }}>
                             <label class="form-check-label" for="checkDefault">
                                 Выполнено
                             </label>
                         </div>
                         <div class="col-12 py-3">
                             <label for="formFile" class="form-label"><strong>Внимание!</strong> <br> Файл должен иметь
-                                следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt'</strong>></label>
+                                следующие расширения: <strong>doc,docx,pdf,pptx,xls,xlsx,txt</strong></label>
                             <input name="files[]" class="form-control" type="file" id="files" multiple>
                         </div>
                         <div class="mt-3">
@@ -84,7 +84,8 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-start">
-                                                    Если вы удалить файл, то он также пропадет из раздела <br> <strong> Все документы</strong>
+                                                    Если вы удалите файл, то он также удаляется из раздела <br> <strong>
+                                                        Все документы</strong>
                                                     <br>
                                                     <br>
                                                     Внимательно ознакомьтесь с данным уведомлением.
