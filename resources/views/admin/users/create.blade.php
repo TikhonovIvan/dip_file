@@ -19,7 +19,10 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="formFile" class="form-label">Добавить аватарку</label>
+                        <label for="formFile" class="form-label">
+                            Вынимание!<br>
+                            Фото должно иметь расширение : <strong>.jpeg, .jpg, .png</strong>  и весить не больше 15мб.
+                        </label>
                         <input name="avatar" class="form-control" type="file" id="formFile">
                     </div>
                     <div class="col-md-6">

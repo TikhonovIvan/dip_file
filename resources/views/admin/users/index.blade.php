@@ -60,6 +60,8 @@
                                         <p class="fw-normal mb-1">{{ $user->department->name }}</p>
                                     </td>
                                     @can('create-edit-user')
+
+
                                         <td class="d-flex gap-1 py-3 justify-content-end">
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -71,7 +73,9 @@
                                             <form method="post" action="{{ route('user.destroy', $user->id) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger">
+
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$user->id}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor"
                                                          class="bi bi-trash" viewBox="0 0 16 16">
@@ -81,9 +85,39 @@
                                                             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                                                     </svg>
                                                 </button>
-                                            </form>
 
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal-{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel-{{$user->id}}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Внимание!</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Если удалить пользователя, то <strong>все задачи</strong>, относящиеся к этому пользователю будут удалены.
+                                                                <br>
+                                                                <br>
+                                                                Внимательно ознакомьтесь с данным пунктом.
+                                                                <br>
+                                                                <span class="">Пользователь:  <strong> {{ $user->name }} {{ $user->surname }}</strong></span>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form method="post" action="{{ route('user.destroy', $user->id) }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <span id="countdownText-{{$user->id}}" class="text-muted small">Ожидайте... 15 сек</span>
+                                                                    <button class="btn btn-danger" id="confirmDeleteBtn-{{$user->id}}" disabled>
+                                                                        Удалить пользователя
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </td>
+
                                     @endcan
                                 </tr>
                             @endif
@@ -101,4 +135,9 @@
 
     </div>
 
+
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 @endsection
