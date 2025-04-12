@@ -11,7 +11,7 @@
     <div class="container py-2">
         <div class="row">
             <div class="col-12">
-                <h4 class="text-center pb-2 border-bottom">Список Задач </h4>
+                <h4 class="text-center pb-2 border-bottom">Список задач </h4>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0 bg-white table-striped ">
                         <thead class="bg-light">
