@@ -29,13 +29,8 @@
     ```bash
    composer install
    ```
-
-3. Установить зависимости Node.js (если требуется)
-    ```bash
-   composer install
-   ```
    
-4. Создать папку .osp и перейти в нее
+3. Создать папку .osp и перейти в нее
     ```bash
    cd .osp
    ```
@@ -46,7 +41,7 @@
     php_engine = PHP-8.2
     public_dir = {base_dir}\public
    ```
-5. Настроить подключение к БД
+4. Настроить подключение к БД
 
    Скопируйте файл среды:
 
@@ -56,7 +51,7 @@
    В результате должен появиться файл .env
 
 
-6. Настроить файл .env
+5. Настроить файл .env
 
     ```bash
     DB_CONNECTION=mysql
@@ -66,25 +61,24 @@
     DB_USERNAME=your_username
     DB_PASSWORD=your_password
     ```
-7. Запустить миграции 
+6. Запустить миграции 
 
     ```bash
     php artisan migrate
    ```
    
-8. Запустить сидеры
+7. Запустить сидеры
     ```bash
     php artisan db:seed    
    ```
     
-9. Сгенерировать ключ приложения
+8. Сгенерировать ключ приложения
     ```bash
     php artisan key:generate 
    ```
 
-10. Запустить проект через OpenServer
-   <br>
-   <br>
+9. Запустить проект через OpenServer
+   
     Данный для входа
 
     Email: admin@gmail.com <br>
