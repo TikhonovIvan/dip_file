@@ -4,11 +4,13 @@
 
 
 ### Требования к установке проекта 
-- PHP -> 8.2 
+- PHP -> 8.2
+- Composer
+- Node.js & npm
 - MySQL
 - OpenServer (6.x.x)
 
-В проекте не используется <u>npm</u> и <u>composer</u>.<br>
+
 Запуск проекта происходит через OpenServer
 
 
@@ -22,7 +24,18 @@
    git clone 
    cd dip_file
    ```
-2. Создать папку .osp и перейти в нее
+
+2. Установить зависимости PHP
+    ```bash
+   composer install
+   ```
+
+3. Установить зависимости Node.js (если требуется)
+    ```bash
+   composer install
+   ```
+   
+4. Создать папку .osp и перейти в нее
     ```bash
    cd .osp
    ```
@@ -33,7 +46,7 @@
     php_engine = PHP-8.2
     public_dir = {base_dir}\public
    ```
-3. Настроить подключение к БД
+5. Настроить подключение к БД
 
    Скопируйте файл среды:
 
@@ -43,7 +56,7 @@
    В результате должен появиться файл .env
 
 
-4. Настроить файл .env
+6. Настроить файл .env
 
     ```bash
     DB_CONNECTION=mysql
@@ -53,18 +66,18 @@
     DB_USERNAME=your_username
     DB_PASSWORD=your_password
     ```
-5. Запустить миграции 
+7. Запустить миграции 
 
     ```bash
-    php artisan migrat
+    php artisan migrate
    ```
    
-6. Запустить сидеры
+8. Запустить сидеры
     ```bash
     php artisan db:seed    
    ```
 
-7. Запустить проект через OpenServer
+9. Запустить проект через OpenServer
    <br>
    <br>
     Данный для входа
