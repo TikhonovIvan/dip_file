@@ -21,7 +21,7 @@
 1. Клонируйте репозиторий:
 
    ```bash
-   git clone 
+   git clone https://github.com/TikhonovIvan/dip_file.git
    cd dip_file
    ```
 
@@ -76,8 +76,13 @@
     ```bash
     php artisan db:seed    
    ```
+    
+9. Сгенерировать ключ приложения
+    ```bash
+    php artisan key:generate 
+   ```
 
-9. Запустить проект через OpenServer
+10. Запустить проект через OpenServer
    <br>
    <br>
     Данный для входа
